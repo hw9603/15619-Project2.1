@@ -1,0 +1,36 @@
+{
+    "referenceGuide" : "Cite all the reference sources in the required format. Proper citations will help you avoid unnecessary trouble. Read JSON grammar from Internet if needed.",
+    "websites":[
+        {
+            "title":"How to send HTTP request in java?",
+            "url":"https://stackoverflow.com/questions/1359689/how-to-send-http-request-in-java",
+            "code":"I learned how to make HTTP request from the second top answer.",
+            "description":"<additional information you find it necessary to provide>"
+        },
+        {
+            "title":"Amazon Web Services APIs",
+            "url":"https://theproject.zone/f18-15619/aws-api",
+            "code":"I used the template for launching EC2 instance described in the Primer.",
+            "description":"<additional information you find it necessary to provide>"
+        },
+        {
+            "title":"Java AWS SDK Create and Run EC2 Instance",
+            "url":"https://codeflex.co/java-aws-sdk-create-and-run-ec2-instance/",
+            "code":"I learned how to create tag for ec2 instance from the example.",
+            "description":"<additional information you find it necessary to provide>"
+        },
+        {
+            "title":"aws-doc-sdk-examples",
+            "url":"https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/java/example_code/ec2/src/main/java/aws/example/ec2/CreateSecurityGroup.java",
+            "code":"I learned how to create a security group from the example.",
+            "description":"<additional information you find it necessary to provide>"
+        }
+    ],
+    "collaborators":[
+        {
+            "andrewId":"<collaborator andrewId>",
+            "collaborationType":"<I helped X, X helped me, or we helped each other>",
+            "description":"<describe the idea you shared>"
+        }
+    ]
+}
