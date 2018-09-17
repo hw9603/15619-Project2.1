@@ -13,18 +13,27 @@ import com.amazonaws.services.ec2.model.RunInstancesRequest;
 import com.amazonaws.services.ec2.model.RunInstancesResult;
 import com.amazonaws.services.ec2.model.Tag;
 
+/**
+ * Class for launching instance.
+ */
 public class LaunchEC2Instance {
-    private String AMI_ID;
-    private String INSTANCE_TYPE;
-    private String KEY_NAME       = "15619";
-    private String SECURITY_GROUP = "horizontalScaling";
+    private String ami_id;
+    private String instance_type;
+    private String key_name       = "15619";
+    private String security_group = "horizontalScaling";
 
-    LaunchEC2Instance(String _AMI_ID, String _INSTANCE_TYPE, String _SECURITY_GROUP) {
-        AMI_ID = _AMI_ID;
-        INSTANCE_TYPE = _INSTANCE_TYPE;
-        SECURITY_GROUP = _SECURITY_GROUP;
+    /**
+     * Constructor for launching EC2 instance.
+     */
+    LaunchEC2Instance(String amiId, String instanceType, String securityGroup) {
+        ami_id = amiId;
+        instance_type = instanceType;
+        security_group = securityGroup;
     }
 
+    /**
+     * Function for running an EC2 instance.
+     */
     public Instance runInstance() throws InterruptedException {
         /*
          *
@@ -44,12 +53,12 @@ public class LaunchEC2Instance {
 
         // Create a Run Instance Request
         RunInstancesRequest runInstancesRequest = new RunInstancesRequest()
-                .withImageId(AMI_ID)
-                .withInstanceType(INSTANCE_TYPE)
+                .withImageId(ami_id)
+                .withInstanceType(instance_type)
                 .withMinCount(1)
                 .withMaxCount(1)
-                .withKeyName(KEY_NAME)
-                .withSecurityGroups(SECURITY_GROUP);
+                .withKeyName(key_name)
+                .withSecurityGroups(security_group);
 
         // Execute the Run Instance Request
         RunInstancesResult runInstancesResult = ec2.runInstances(runInstancesRequest);
@@ -73,7 +82,7 @@ public class LaunchEC2Instance {
 
         DescribeInstancesRequest describeInstancesRequest = new DescribeInstancesRequest();
         describeInstancesRequest.withInstanceIds(instance.getInstanceId());
-        while(true) {
+        while (true) {
             long startTime = System.currentTimeMillis();
             DescribeInstancesResult describeInstancesResult =
                     ec2.describeInstances(describeInstancesRequest);
@@ -82,8 +91,7 @@ public class LaunchEC2Instance {
                     .getInstances()
                     .get(0);
             if (instance.getState().getName().equals("running")) break;
-            while (System.currentTimeMillis() - startTime < 10000) {
-            }
+            while (System.currentTimeMillis() - startTime < 10000) {}
         }
         ec2.shutdown();
 
